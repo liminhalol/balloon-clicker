@@ -1,0 +1,41 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: monospace;
+}
+
+.game {
+  margin: 30px;
+}
+
+.balloon-grid {
+  display: grid;
+  grid-template-columns: repeat(15, 1fr);
+  gap: 30px;
+}
+
+.balloon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+}
+
+.balloon--active::after {
+  content: attr(data-hp);
+  color: #000;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid #858585;
+  width: 50px;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
