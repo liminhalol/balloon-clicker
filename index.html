@@ -6,24 +6,43 @@
     <link rel="stylesheet" href="styles.css" />
     <script defer src="scripts/scripts.js"></script>
     <script defer src="scripts/store.js"></script>
-    <title>Document</title>
+    <title>balloon clicker</title>
   </head>
   <body>
-    <div class="game">
-      <div class="balloon-grid"></div>
-      <button class="store-btn btn">loja</button>
-      <div class="store hidden">
-        <p class="store-title text--center">loja</p>
-        <div class="store-stats">
-          <p>ouro: <span class="stats-gold">0</span></p>
-          <p>dano atual: <span class="stats-damage">1</span></p>
-        </div>
+    <div class="screen">
+      <div class="game">
+        <div class="balloon-grid"></div>
 
-        <div class="store-item">
-          <button class="btn store-buy-btn">mais dano</button>
-          <span class="store-price">15</span>
+        <div class="store hidden">
+          <p class="store-title text--center">loja</p>
+          <div class="store-stats">
+            <p>ouro: <span class="stats-gold">0</span></p>
+            <p>dano atual: <span class="stats-damage">1</span></p>
+          </div>
+
+          <div class="store-item">
+            <button class="btn store-buy-btn">mais dano</button>
+            <span class="store-price">15</span>
+          </div>
+          <button class="btn close-store-btn">x</button>
         </div>
-        <button class="btn close-store-btn">x</button>
+      </div>
+      <div class="hotbar">
+        <div class="hotbar-buttons">
+          <button class="store-btn hotbar-btn btn">loja</button>
+          <button class="store-btn hotbar-btn btn">status</button>
+        </div>
+        <pre class="hotbar-logo">
+ ____    ____  _      _       ___    ___   ____          __  _      ____   __  __  _    ___  ____  
+|    \  /    || |    | |     /   \  /   \ |    \        /  ]| |    |    | /  ]|  |/ ]  /  _]|    \ 
+|  o  )|  o  || |    | |    |     ||     ||  _  |      /  / | |     |  | /  / |  ' /  /  [_ |  D  )
+|     ||     || |___ | |___ |  O  ||  O  ||  |  |     /  /  | |___  |  |/  /  |    \ |    _]|    / 
+|  O  ||  _  ||     ||     ||     ||     ||  |  |    /   \_ |     | |  /   \_ |     \|   [_ |    \ 
+|     ||  |  ||     ||     ||     ||     ||  |  |    \     ||     | |  \     ||  .  ||     ||  .  \
+|_____||__|__||_____||_____| \___/  \___/ |__|__|     \____||_____||____\____||__|\_||_____||__|\_|
+                                                                                                   </pre
+        >
+        <p>feito por lime lol</p>
       </div>
     </div>
   </body>

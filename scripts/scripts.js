@@ -30,9 +30,9 @@ function randomNumber(min, max) {
 }
 
 function randomColor() {
-  return `rgb(${randomNumber(0, 190)}, ${randomNumber(0, 190)}, ${randomNumber(
+  return `rgb(${randomNumber(0, 240)}, ${randomNumber(0, 240)}, ${randomNumber(
     0,
-    190
+    240
   )})`;
 }
 
@@ -70,8 +70,8 @@ function refillBalloons() {
     // |======[ GENERATE HTML ]======|
     const balloonHtml = `
     <pre class="balloon" style="color: ${randomColor()}" data-hp="${randomNumber(
-      2,
-      3
+      10,
+      15
     )}">${balloonAscii[randomNumber(0, balloonAscii.length - 1)]}</pre>
     `;
 
