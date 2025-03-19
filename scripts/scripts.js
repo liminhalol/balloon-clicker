@@ -1,9 +1,7 @@
 // |======[ HTML ELEMENTS ]======|
 const balloonGrid = document.querySelector(".balloon-grid");
-const storeBtn = document.querySelector(".store-btn");
-const damageText = document.querySelector(".stats-damage");
 const goldText = document.querySelector(".stats-gold");
-const storePrice = document.querySelector(".store-price");
+const damageText = document.querySelector(".stats-damage");
 
 // |======[ GAME RULES ]======|
 let maxBalloonsAmount = 80;
@@ -11,7 +9,7 @@ let maxBalloonsAmount = 80;
 const game = {
   // |======[ RULES ]======|
   maxBalloonsAmount: maxBalloonsAmount,
-  currentballoonsAmount: maxBalloonsAmount,
+  currentBalloonsAmount: maxBalloonsAmount,
 
   // |======[ STATS ]======|
   balloonsPopped: 0,
@@ -23,18 +21,6 @@ const player = {
   damage: 1,
   gold: 0,
 };
-
-// |======[ HELPER FUNCTIONS ]======|
-function randomNumber(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-function randomColor() {
-  return `rgb(${randomNumber(0, 240)}, ${randomNumber(0, 240)}, ${randomNumber(
-    0,
-    240
-  )})`;
-}
 
 // |======[ BALLOON ASCII ]======|
 const balloonAscii = [
@@ -69,7 +55,7 @@ function refillBalloons() {
   for (let i = 0; i < game.maxBalloonsAmount; i++) {
     // |======[ GENERATE HTML ]======|
     const balloonHtml = `
-    <pre class="balloon" style="color: ${randomColor()}" data-hp="${randomNumber(
+    <pre class="balloon flex--center" style="color: ${randomColor()}" data-hp="${randomNumber(
       10,
       15
     )}">${balloonAscii[randomNumber(0, balloonAscii.length - 1)]}</pre>
@@ -90,31 +76,32 @@ balloonGrid.addEventListener("click", function (e) {
 
   // |======[ DAMAGE BALLOON ]======|
   balloon.dataset.hp -= player.damage;
-  balloon.classList.add("balloon--active");
+  balloon.classList.add("balloon--damaged");
 
   // |======[ REMOVE HEALTHBAR ]======|
   /*
   setTimeout(() => {
-    balloon.classList.remove("balloon--active");
+    balloon.classList.remove("balloon--damaged");
   }, 3000);
   */
 
   // |======[ KILL BALLOON ]======|
   if (balloon.dataset.hp <= 0) {
-    // |======[ UPDATE STATS ]======|
-    game.currentballoonsAmount--;
+    // |======[ UPDATE GAME STATS ]======|
+    game.currentBalloonsAmount--;
     game.balloonsPopped++;
+    // |======[ UPDATE PLAYER STATS ]======|
     player.gold++;
     goldText.textContent = player.gold;
 
-    // |======[ INSERT PLACEHOLDER AND REMOVE ]======|
+    // |======[ INSERT PLACEHOLDER AND REMOVE BALLOON ]======|
     balloon.insertAdjacentHTML("afterend", `<div class="placeholder"></div>`);
     balloon.remove();
   }
 
-  // |======[ REFIL BALLOONS AFTER CLEARUBG ]======|
-  if (game.currentballoonsAmount <= 0) {
-    game.currentballoonsAmount = maxBalloonsAmount;
+  // |======[ REFIL BALLOONS AFTER CLEARING ]======|
+  if (game.currentBalloonsAmount <= 0) {
+    game.currentBalloonsAmount = maxBalloonsAmount;
     balloonGrid.innerHTML = "";
     refillBalloons();
   }

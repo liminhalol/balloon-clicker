@@ -1,4 +1,7 @@
-* {
+/* |=======[ BASE ]=======|  */
+*,
+*::after,
+*::before {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -6,75 +9,132 @@
 
 body {
   font-family: monospace;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  line-height: 1;
   height: 100vh;
 }
 
-.game {
-  margin: 15px;
-  position: relative;
-}
-
-.screen {
-  /* background-color: red; */
-  border: 1px solid black;
-}
-
-.hotbar {
+/* |=======[ REUSABLE ]=======|  */
+.flex--center {
   display: flex;
+  justify-content: center;
   align-items: center;
-  justify-content: space-between;
-  border-top: 1px solid black;
-  padding: 0 15px;
-}
-
-.hotbar-logo {
-  font-size: 10px;
-}
-
-button {
-  font-family: monospace;
-  cursor: pointer;
 }
 
 .text--center {
   text-align: center;
 }
 
+.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+button {
+  font-family: monospace;
+  cursor: pointer;
+  border-radius: 0;
+}
+
+/* |=======[ GAME AREA ]=======|  */
+.game {
+  margin: 5px;
+  position: relative;
+}
+
+.screen {
+  border: 1px solid black;
+}
+
+/* |=======[ BALLOON GRID ]=======|  */
 .balloon-grid {
   display: grid;
   grid-template-columns: repeat(20, 1fr);
 }
 
 .balloon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
   user-select: none;
+  cursor: pointer;
   position: relative;
 }
 
-.balloon--active::after {
+.balloon--damaged::after {
   content: attr(data-hp);
-  color: #000;
-  background-color: rgb(255, 255, 255);
-  border: 1px solid #858585;
-  width: 50px;
-  display: flex;
-  justify-content: center;
+  /*  */
   position: absolute;
   bottom: 0;
   left: 0;
+  /*  */
+  width: 50px;
+  color: #000;
+  border: 1px solid #858585;
+  background-color: rgb(255, 255, 255);
+  /*  */
+  display: flex;
+  justify-content: center;
 }
 
-.hidden {
-  display: none;
+/* |=======[ STORE ]=======|  */
+.store {
+  height: 200px;
+  width: 140px;
+  padding: 10px;
+  /*  */
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  /*  */
+  font-size: 12px;
+  border: 1px solid #000;
+  background-color: #fff;
 }
 
-.store-btn {
+.store-title {
+  font-size: 16px;
+  margin-bottom: 12px;
+}
+
+.store-stats {
+  margin-bottom: 12px;
+}
+
+.store-buy-btn {
+  padding: 2px 4px;
+  border: none;
+  background-color: #d1d1d1;
+}
+.store-price {
+  color: #104d04;
+  font-weight: bold;
+}
+
+#btn--close-store {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  font-size: 14px;
+  width: 17px;
+  aspect-ratio: 1/1;
+  border: none;
+  color: #414141;
+}
+
+/* |=======[ HOTBAR ]=======|  */
+.hotbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /*  */
+  padding: 0 15px;
+  border-top: 1px solid black;
+}
+.hotbar-logo {
+  font-size: 10px;
+}
+
+.hotbar-buttons {
+  display: flex;
+  align-items: center;
+  gap: 16px;
 }
 
 .hotbar-btn {
@@ -83,64 +143,8 @@ button {
   border: 1px solid currentColor;
   /*  */
   padding: 6px 12px;
-  /*  */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.store {
-  padding: 10px;
-  font-size: 12px;
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  background-color: #fff;
-  border: 1px solid #000;
-  height: 200px;
-  width: 140px;
 }
 
-.hotbar-buttons {
-  display: flex;
-  gap: 16px;
-}
-
-.store-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.store-buy-btn {
-  border-radius: 0;
-  border: none;
-  padding: 2px;
-  background-color: #d1d1d1;
-}
-.store-price {
-  color: #104d04;
-  font-weight: bold;
-}
-
-.store-title {
-  font-size: 16px;
-  margin-bottom: 6px;
-}
-
-.store-stats {
-  margin-bottom: 12px;
-}
-
-.close-store-btn {
-  position: absolute;
-  top: 6px;
-  right: 6px;
-  font-size: 14px;
-  width: 17px;
-  aspect-ratio: 1/1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: none;
-  background-color: none;
-  color: #414141;
+.hotbar-credits {
+  font-style: italic;
 }
