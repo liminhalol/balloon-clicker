@@ -4,24 +4,26 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles.css" />
-    <script defer src="scripts.js"></script>
+    <script defer src="scripts/scripts.js"></script>
+    <script defer src="scripts/store.js"></script>
     <title>Document</title>
   </head>
   <body>
     <div class="game">
-      <div class="balloon-grid">
-        <pre class="balloon">
-  _____
- /     \
-|       |
-|       |
- \     /
-  -----
-    |
-   |
-    |
-    0</pre
-        >
+      <div class="balloon-grid"></div>
+      <button class="store-btn btn">loja</button>
+      <div class="store hidden">
+        <p class="store-title text--center">loja</p>
+        <div class="store-stats">
+          <p>ouro: <span class="stats-gold">0</span></p>
+          <p>dano atual: <span class="stats-damage">1</span></p>
+        </div>
+
+        <div class="store-item">
+          <button class="btn store-buy-btn">mais dano</button>
+          <span class="store-price">15</span>
+        </div>
+        <button class="btn close-store-btn">x</button>
       </div>
     </div>
   </body>
