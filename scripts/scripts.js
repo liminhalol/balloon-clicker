@@ -1,12 +1,6 @@
-// |======[ HTML ELEMENTS ]======|
-const balloonGrid = document.querySelector(".balloon-grid");
-// |Stats|
-const goldText = document.querySelector("#stats-gold");
-const damageText = document.querySelector("#stats-damage");
-const areaDamageText = document.querySelector("#stats-areaDamage");
-
 // |======[ GAME RULES ]======|
 let maxBalloonsAmount = 79;
+const popSound = new Audio("../pop.mp3");
 
 const game = {
   // |======[ RULES ]======|
@@ -23,6 +17,7 @@ const player = {
   damage: 1,
   areaDamage: 0,
   gold: 1000,
+  allGold: 0,
 };
 
 const balloonAscii = [
@@ -73,51 +68,6 @@ function getGold(amount) {
   goldText.textContent = player.gold;
 }
 
-function damageBalloon(balloon, damage) {
-  if (balloon.classList.contains("placeholder")) return;
-  // |======[ DAMAGE BALLOON ]======|
-  balloon.dataset.hp = (balloon.dataset.hp - damage).toFixed(1);
-  balloon.classList.add("balloon--damaged");
-
-  // |======[ KILL BALLOON ]======|
-  if (balloon.dataset.hp <= 0) {
-    // |======[ UPDATE GAME STATS ]======|
-    game.currentBalloonsAmount--;
-    game.balloonsPopped++;
-
-    // |======[ UPDATE PLAYER STATS ]======|
-    getGold(1);
-
-    // |======[ INSERT PLACEHOLDER AND REMOVE BALLOON ]======|
-    balloon.insertAdjacentHTML("afterend", `<div class="placeholder"></div>`);
-    balloon.remove();
-  }
-
-  // |======[ REFIL BALLOONS AFTER CLEARING ]======|
-  if (game.currentBalloonsAmount <= 0) {
-    game.currentBalloonsAmount = maxBalloonsAmount;
-    balloonGrid.innerHTML = "";
-    refillBalloons();
-  }
-}
-
-function damageSurroundingBalloons(balloon) {
-  if (player.areaDamage === 0) return;
-  // |======[ SELECTING SURROUNDING BALLOONS ]======|
-  const currentBalloonPosition = +balloon.dataset.position;
-  const surroundingBalloonPositions = [-21, -20, -19, -1, 1, 19, 20, 21];
-
-  // |======[ DAMAGING SURROUNDING BALLOONS ]======|
-  for (position of surroundingBalloonPositions) {
-    const surroundingBalloon =
-      balloonGrid.children[currentBalloonPosition - position];
-
-    surroundingBalloon &&
-      !surroundingBalloon.classList.contains("placeholder") &&
-      damageBalloon(surroundingBalloon, player.areaDamage);
-  }
-}
-
 // |======[ CLICKING BALLOONS ]======|
 balloonGrid.addEventListener("click", function (e) {
   // |======[ SELECT BALLOON HTML ]======|
@@ -126,10 +76,11 @@ balloonGrid.addEventListener("click", function (e) {
 
   // |======[ UPDATE CLICKS ]======|
   game.clicks++;
+  statusClicks.textContent = game.clicks;
 
   // |======[ DAMAGE BALLOON ]======|
   damageBalloon(balloon, player.damage);
-  damageSurroundingBalloons(balloon);
+  if (player.areaDamage != 0) damageSurroundingBalloons(balloon);
 });
 
 refillBalloons();

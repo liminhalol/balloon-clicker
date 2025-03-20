@@ -75,19 +75,22 @@ button {
 
 .placeholder {
 }
+
 /* |=======[ STORE ]=======|  */
-.store {
+.menu {
   height: 200px;
   width: 140px;
   padding: 10px;
   /*  */
   position: absolute;
-  left: 0;
-  bottom: 0;
   /*  */
   font-size: 12px;
   border: 1px solid #000;
   background-color: #fff;
+}
+.store {
+  left: 0;
+  bottom: 0;
 }
 
 .store-title {
@@ -116,7 +119,7 @@ button {
   font-weight: bold;
 }
 
-#btn--close-store {
+.btn--close-menu {
   position: absolute;
   top: 6px;
   right: 6px;
@@ -125,6 +128,24 @@ button {
   aspect-ratio: 1/1;
   border: none;
   color: #414141;
+}
+
+/* |=======[ STATUS ]=======|  */
+.status {
+  left: 150px;
+  bottom: 0;
+}
+
+.status-title {
+  font-size: 16px;
+  margin-bottom: 12px;
+}
+.status-stat {
+  margin-bottom: 6px;
+}
+
+.status-number {
+  font-weight: bold;
 }
 
 /* |=======[ HOTBAR ]=======|  */
@@ -152,6 +173,10 @@ button {
   border: 1px solid currentColor;
   /*  */
   padding: 6px 12px;
+}
+
+.hotbar-btn:hover {
+  background-color: #dbdbdb;
 }
 
 .hotbar-credits {

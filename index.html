@@ -4,9 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles.css" />
-    <script defer src="scripts/helper.js"></script>
-    <script defer src="scripts/scripts.js"></script>
+    <script defer src="scripts/base/elements.js"></script>
+    <script defer src="scripts/base/helper.js"></script>
+    <script defer src="scripts/damage.js"></script>
     <script defer src="scripts/store.js"></script>
+    <script defer src="scripts/stats.js"></script>
+    <script defer src="scripts/scripts.js"></script>
     <title>balloon clicker</title>
   </head>
   <body class="flex--center">
@@ -16,7 +19,7 @@
         <div class="balloon-grid"></div>
 
         <!-- |=======[ STORE ]=======|  -->
-        <div class="store hidden">
+        <div class="store menu hidden">
           <p class="store-title text--center">loja</p>
 
           <!-- |=======[ PLAYER STATS ]=======|  -->
@@ -42,14 +45,43 @@
             </div>
           </div>
 
-          <button class="btn flex--center" id="btn--close-store">x</button>
+          <button
+            class="btn flex--center btn--close-menu"
+            id="btn--close-store"
+          >
+            x
+          </button>
+        </div>
+
+        <div class="status menu hidden">
+          <p class="status-title text--center">status</p>
+          <div class="status-stat">
+            <p>balões estourados:</p>
+            <span id="status-balloonsPopped" class="status-number">0</span>
+          </div>
+          <div class="status-stat">
+            <p>cliques:</p>
+            <span id="status-clicks" class="status-number">0</span>
+          </div>
+          <div class="status-stat">
+            <p>dinheiro ganho:</p>
+            <span id="status-gold" class="status-number">0</span>
+          </div>
+
+          <button
+            class="btn flex--center btn--close-menu"
+            id="btn--close-status"
+          >
+            x
+          </button>
         </div>
       </div>
+
       <!-- |=======[ HOTBAR ]=======|  -->
       <div class="hotbar">
         <div class="hotbar-buttons">
           <button class="btn hotbar-btn" id="btn--open-store">loja</button>
-          <button class="btn hotbar-btn">status</button>
+          <button class="btn hotbar-btn" id="btn--open-stats">status</button>
         </div>
         <pre class="hotbar-logo">
  ____    ____  _      _       ___    ___   ____          __  _      ____   __  __  _    ___  ____  

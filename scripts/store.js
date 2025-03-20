@@ -1,11 +1,3 @@
-// |======[ HTML ELEMENTS ]======|
-const storeEl = document.querySelector(".store");
-//
-const openStoreBtn = document.querySelector("#btn--open-store");
-const closeStoreBtn = document.querySelector("#btn--close-store");
-//
-const upgradesEl = document.querySelectorAll(".store-upgrade");
-
 // |======[ UPGRADES ]======|
 const upgrades = {
   moreDamage: {
