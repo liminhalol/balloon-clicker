@@ -73,6 +73,8 @@ button {
   justify-content: center;
 }
 
+.placeholder {
+}
 /* |=======[ STORE ]=======|  */
 .store {
   height: 200px;
@@ -95,6 +97,13 @@ button {
 
 .store-stats {
   margin-bottom: 12px;
+}
+
+.store-upgrade {
+  margin-bottom: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .store-buy-btn {

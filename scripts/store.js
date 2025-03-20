@@ -1,15 +1,38 @@
 // |======[ HTML ELEMENTS ]======|
 const storeEl = document.querySelector(".store");
-const buyItemBtn = document.querySelector(".store-buy-btn");
+//
 const openStoreBtn = document.querySelector("#btn--open-store");
 const closeStoreBtn = document.querySelector("#btn--close-store");
-const storePrice = document.querySelector(".store-price");
+//
+const upgradesEl = document.querySelectorAll(".store-upgrade");
 
 // |======[ UPGRADES ]======|
 const upgrades = {
   moreDamage: {
-    ammount: 1,
+    ammount: 0,
     currentPrice: 15,
+
+    _buy() {
+      player.damage++;
+      this.ammount++;
+      this.currentPrice = Math.round(
+        this.currentPrice + this.currentPrice * 0.15
+      );
+      damageText.textContent = player.damage;
+    },
+  },
+
+  areaDamage: {
+    ammount: 0,
+    currentPrice: 20,
+    _buy() {
+      player.areaDamage = player.areaDamage + 0.2;
+      this.ammount++;
+      this.currentPrice = Math.round(
+        this.currentPrice + this.currentPrice * 0.15
+      );
+      areaDamageText.textContent = player.areaDamage.toFixed(1);
+    },
   },
 };
 
@@ -19,21 +42,24 @@ openStoreBtn.addEventListener("click", toggleStore);
 closeStoreBtn.addEventListener("click", toggleStore);
 
 // |======[ BUYING ITEMS ]======|
-buyItemBtn.addEventListener("click", function (e) {
-  if (player.gold >= upgrades.moreDamage.currentPrice) {
-    // |======[ UPDATE GOLD ]======|
-    player.gold -= upgrades.moreDamage.currentPrice;
-    goldText.textContent = player.gold;
+upgradesEl.forEach(function (upgrade) {
+  // |======[ SELECTING CURRENT PRICE ELEMENT ]======|
+  const priceText = upgrade.querySelector(".store-price");
 
-    // |======[ UPDATE PRICE ]======|
-    upgrades.moreDamage.currentPrice = Math.round(
-      upgrades.moreDamage.currentPrice + upgrades.moreDamage.currentPrice * 0.15
-    );
-    storePrice.textContent = upgrades.moreDamage.currentPrice;
+  // |======[ SELECTING BUTTON ]======|
+  upgrade
+    .querySelector(".store-buy-btn")
+    .addEventListener("click", function () {
+      // |======[ GET CURRENT UPGRADE ]======|
+      const upgrade = upgrades[this.dataset.upgrade];
 
-    // |======[ UPDATE DAMAGE ]======|
-    upgrades.moreDamage.ammount++;
-    player.damage++;
-    damageText.textContent = player.damage;
-  }
+      if (player.gold >= upgrade.currentPrice) {
+        // |======[ UPDATE GOLD ]======|
+        getGold(-upgrade.currentPrice);
+
+        // |======[ BUY ]======|
+        upgrade._buy();
+        priceText.textContent = upgrade.currentPrice;
+      }
+    });
 });
