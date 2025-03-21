@@ -1,3 +1,9 @@
+const popSound = new Audio("pop.mp3");
+
+/* |=========================================================================| */
+/*                          DAMAGE BALLOONS ON CLICK                           */
+/* |=========================================================================| */
+
 function damageBalloon(balloon, damage) {
   if (balloon.classList.contains("placeholder")) return;
 
@@ -20,15 +26,18 @@ function damageBalloon(balloon, damage) {
     statusGold.textContent = player.allGold;
 
     // |======[ INSERT PLACEHOLDER AND REMOVE BALLOON ]======|
-    balloon.insertAdjacentHTML("afterend", `<div class="placeholder"></div>`);
+    balloon.insertAdjacentHTML(
+      "afterend",
+      `<div class="placeholder" data-position="${balloon.dataset.position}"></div>`
+    );
     balloon.remove();
-  }
 
-  // |======[ REFIL BALLOONS AFTER CLEARING ]======|
-  if (game.currentBalloonsAmount <= 0) {
-    game.currentBalloonsAmount = maxBalloonsAmount;
-    balloonGrid.innerHTML = "";
-    refillBalloons();
+    // |======[ REFIL BALLOONS AFTER CLEARING ]======|
+    if (game.currentBalloonsAmount <= game.maxBalloonsAmount * 0.35) {
+      balloonGrid.innerHTML = "";
+      game.currentBalloonsAmount = maxBalloonsAmount;
+      refillBalloons();
+    }
   }
 }
 

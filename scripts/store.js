@@ -5,11 +5,8 @@ const upgrades = {
     currentPrice: 15,
 
     _buy() {
+      upgrades._increaseAmount(this);
       player.damage++;
-      this.ammount++;
-      this.currentPrice = Math.round(
-        this.currentPrice + this.currentPrice * 0.15
-      );
       damageText.textContent = player.damage;
     },
   },
@@ -17,14 +14,20 @@ const upgrades = {
   areaDamage: {
     ammount: 0,
     currentPrice: 20,
+
     _buy() {
+      upgrades._increaseAmount(this);
       player.areaDamage = player.areaDamage + 0.2;
-      this.ammount++;
-      this.currentPrice = Math.round(
-        this.currentPrice + this.currentPrice * 0.15
-      );
       areaDamageText.textContent = player.areaDamage.toFixed(1);
     },
+  },
+
+  // |======[ METHODS ]======|
+  _increaseAmount(upgrade) {
+    upgrade.ammount++;
+    upgrade.currentPrice = Math.round(
+      upgrade.currentPrice + upgrade.currentPrice * 0.15
+    );
   },
 };
 

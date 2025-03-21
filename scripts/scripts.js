@@ -1,6 +1,9 @@
+/* |=========================================================================| */
+/*                                    GAME                                     */
+/* |=========================================================================| */
+
 // |======[ GAME RULES ]======|
 let maxBalloonsAmount = 79;
-const popSound = new Audio("../pop.mp3");
 
 const game = {
   // |======[ RULES ]======|
@@ -16,7 +19,7 @@ const game = {
 const player = {
   damage: 1,
   areaDamage: 0,
-  gold: 1000,
+  gold: 0,
   allGold: 0,
 };
 
@@ -46,6 +49,9 @@ const balloonAscii = [
     0
 `,
 ];
+/* |=========================================================================| */
+/*                                  FUNCTIONS                                  */
+/* |=========================================================================| */
 
 function refillBalloons() {
   for (let i = game.maxBalloonsAmount; i >= 0; i--) {
@@ -68,15 +74,31 @@ function getGold(amount) {
   goldText.textContent = player.gold;
 }
 
-// |======[ CLICKING BALLOONS ]======|
+function updateClicks() {
+  game.clicks++;
+  statusClicks.textContent = game.clicks;
+}
+
+/* |=========================================================================| */
+/*                                 GAME LOGIC                                  */
+/* |=========================================================================| */
+
 balloonGrid.addEventListener("click", function (e) {
   // |======[ SELECT BALLOON HTML ]======|
   const balloon = e.target;
+
+  // |======[ DAMAGE SURROUNDINGS IF PLACEHOLDER ]======|
+  if (balloon.classList.contains("placeholder") && player.areaDamage != 0) {
+    updateClicks();
+    damageSurroundingBalloons(balloon);
+    return;
+  }
+
+  // |======[ PREVENTING TRYING TO DAMAGE THE GRID BUG ]======|
   if (!balloon.classList.contains("balloon")) return;
 
   // |======[ UPDATE CLICKS ]======|
-  game.clicks++;
-  statusClicks.textContent = game.clicks;
+  updateClicks();
 
   // |======[ DAMAGE BALLOON ]======|
   damageBalloon(balloon, player.damage);
@@ -84,9 +106,3 @@ balloonGrid.addEventListener("click", function (e) {
 });
 
 refillBalloons();
-
-// |======[ SETTING PLACEHOLDER HEIGHT ]======|
-const firstBalloon = document.querySelector(".balloon");
-const cssRules = [...document.styleSheets[0].cssRules];
-cssRules.find((rule) => rule.selectorText === ".placeholder").style.height =
-  getComputedStyle(firstBalloon).height;

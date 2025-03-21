@@ -1,4 +1,11 @@
 /* |=======[ BASE ]=======|  */
+:root {
+  --background-color: #ffffff;
+  --text-color: #000000;
+  --gray-color: #d4d4d4;
+  --green-color: #104d04;
+}
+
 *,
 *::after,
 *::before {
@@ -11,6 +18,8 @@ body {
   font-family: monospace;
   line-height: 1;
   height: 100vh;
+  background-color: var(--background-color);
+  color: var(--text-color);
 }
 
 /* |=======[ REUSABLE ]=======|  */
@@ -30,7 +39,7 @@ body {
 }
 
 button {
-  font-family: monospace;
+  font-family: inherit;
   cursor: pointer;
   border-radius: 0;
 }
@@ -42,7 +51,7 @@ button {
 }
 
 .screen {
-  border: 1px solid black;
+  border: 1px solid var(--text-color);
 }
 
 /* |=======[ BALLOON GRID ]=======|  */
@@ -65,18 +74,20 @@ button {
   left: 0;
   /*  */
   width: 50px;
-  color: #000;
-  border: 1px solid #858585;
-  background-color: rgb(255, 255, 255);
+  color: var(--text-color);
+  border: 1px solid var(--gray-color);
+  background-color: var(--background-color);
   /*  */
   display: flex;
   justify-content: center;
 }
 
 .placeholder {
+  height: 130px;
+  position: relative;
 }
 
-/* |=======[ STORE ]=======|  */
+/* |=======[ MENUS ]=======|  */
 .menu {
   height: 200px;
   width: 140px;
@@ -85,17 +96,32 @@ button {
   position: absolute;
   /*  */
   font-size: 12px;
-  border: 1px solid #000;
-  background-color: #fff;
+  color: var(--text-color);
+  border: 1px solid var(--text-color);
+  background-color: var(--background-color);
 }
+
+.menu-title {
+  font-size: 16px;
+  margin-bottom: 12px;
+}
+
+.btn--close-menu {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  font-size: 14px;
+  width: 17px;
+  aspect-ratio: 1/1;
+  border: none;
+  color: var(--text-color);
+  background-color: var(--gray-color);
+}
+
+/* |=======[ STORE ]=======|  */
 .store {
   left: 0;
   bottom: 0;
-}
-
-.store-title {
-  font-size: 16px;
-  margin-bottom: 12px;
 }
 
 .store-stats {
@@ -112,22 +138,12 @@ button {
 .store-buy-btn {
   padding: 2px 4px;
   border: none;
-  background-color: #d1d1d1;
+  color: var(--text-color);
+  background-color: var(--gray-color);
 }
 .store-price {
-  color: #104d04;
+  color: var(--green-color);
   font-weight: bold;
-}
-
-.btn--close-menu {
-  position: absolute;
-  top: 6px;
-  right: 6px;
-  font-size: 14px;
-  width: 17px;
-  aspect-ratio: 1/1;
-  border: none;
-  color: #414141;
 }
 
 /* |=======[ STATUS ]=======|  */
@@ -136,12 +152,8 @@ button {
   bottom: 0;
 }
 
-.status-title {
-  font-size: 16px;
-  margin-bottom: 12px;
-}
 .status-stat {
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 }
 
 .status-number {
@@ -155,28 +167,28 @@ button {
   justify-content: space-between;
   /*  */
   padding: 0 15px;
-  border-top: 1px solid black;
+  border-top: 1px solid var(--text-color);
 }
+
 .hotbar-logo {
   font-size: 10px;
 }
 
 .hotbar-buttons {
-  display: flex;
-  align-items: center;
   gap: 16px;
 }
 
 .hotbar-btn {
   font-size: 16px;
-  background-color: #fff;
+  background: none;
   border: 1px solid currentColor;
   /*  */
   padding: 6px 12px;
+  color: var(--text-color);
 }
 
 .hotbar-btn:hover {
-  background-color: #dbdbdb;
+  background-color: var(--gray-color);
 }
 
 .hotbar-credits {

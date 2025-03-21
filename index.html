@@ -3,12 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles.css" title="main" />
     <script defer src="scripts/base/elements.js"></script>
     <script defer src="scripts/base/helper.js"></script>
     <script defer src="scripts/damage.js"></script>
     <script defer src="scripts/store.js"></script>
     <script defer src="scripts/stats.js"></script>
+    <script defer src="scripts/changeTheme.js"></script>
     <script defer src="scripts/scripts.js"></script>
     <title>balloon clicker</title>
   </head>
@@ -20,7 +21,7 @@
 
         <!-- |=======[ STORE ]=======|  -->
         <div class="store menu hidden">
-          <p class="store-title text--center">loja</p>
+          <p class="menu-title text--center">loja</p>
 
           <!-- |=======[ PLAYER STATS ]=======|  -->
           <div class="store-stats">
@@ -54,7 +55,7 @@
         </div>
 
         <div class="status menu hidden">
-          <p class="status-title text--center">status</p>
+          <p class="menu-title text--center">status</p>
           <div class="status-stat">
             <p>balões estourados:</p>
             <span id="status-balloonsPopped" class="status-number">0</span>
@@ -79,9 +80,12 @@
 
       <!-- |=======[ HOTBAR ]=======|  -->
       <div class="hotbar">
-        <div class="hotbar-buttons">
+        <div class="hotbar-buttons flex--center">
           <button class="btn hotbar-btn" id="btn--open-store">loja</button>
           <button class="btn hotbar-btn" id="btn--open-stats">status</button>
+          <button class="btn hotbar-btn" id="btn--change-theme">
+            tema escuro
+          </button>
         </div>
         <pre class="hotbar-logo">
  ____    ____  _      _       ___    ___   ____          __  _      ____   __  __  _    ___  ____  
